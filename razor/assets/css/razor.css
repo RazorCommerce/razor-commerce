@@ -1,0 +1,176 @@
+/* Dashboard */
+.dashboard-link {
+  width: 20%;
+  min-width: 150px;
+  float: left;
+  font-size:18px;
+  padding: 15px;
+  margin: 18px;
+  border: solid 1px #E2E2E2;
+  text-align: center;
+  border-radius: 12px;
+}
+.dashboard-link i.fa {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+.ccm-ui .dashboard-link a:hover {
+  text-decoration: none;
+}
+
+/* Product Detail */
+.product .product-col-left {
+  margin-top: 26px;
+}
+.product h2 {
+  margin-bottom: 6px;
+}
+.product .regular-price {
+  font-size: 20px;
+  margin: 0 0 18px 0;
+}
+.product .add-to-cart {
+  margin: 18px 0 25px 0;
+}
+.product .sku {
+  color: #858585;
+  font-size: 14px;
+}
+.product .description-summary {
+  color: #656565;
+  font-size: 12px;
+}
+
+.checkout-wrap .row input.error {
+  border-color: red;
+}
+.checkout-wrap label.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Product List */
+.product-grid-wrap {
+
+}
+.product-grid-wrap .grid-product {
+  text-align: center;
+}
+.product-grid-wrap .grid-product a .product-name,
+.product-grid-wrap .grid-product a .product-description {
+  color: #343434;
+}
+.product-grid-wrap .grid-product a {
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 16px;
+}
+.grid-product img {
+  border: solid 2px #D8D8D8;
+}
+.grid-product .add-to-cart {
+  margin-top: 15px;
+}
+
+.shipping-address-form-wrap {
+  display: none;
+}
+.shipping-address-choice {
+
+}
+.checkout-wrap .shipping-address-choice label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #252525;
+  margin-bottom: 3px;
+}
+.checkout-wrap .shipping-address-choice input {
+  margin: 3px 0 0 6px;
+}
+
+/* customer login form */
+.customer-login-toggle {
+  font-size: 20px;
+  margin: 15px 0;
+}
+.customer-login-toggle-wrap {
+  font-size: 16px;
+  background: #E8E8E8;
+  cursor: pointer;
+  padding: 0;
+}
+.customer-login-form-wrap {
+  display: none;
+}
+.customer-login-form-wrap span,
+.customer-login-form-wrap .checkbox {
+  display: none;
+}
+.checkout-wrap .customer-login-form-wrap hr {
+  margin: 0;
+}
+
+.checkout-wrap .checkout-pane-shipping-address label {
+  font-size: 20px;
+  margin: 15px 8px;
+}
+.checkout-wrap label {
+  margin: 10px 0 1px 0;
+  font-size: 13px;
+  font-weight: normal;
+}
+.checkout-wrap input.form-control {
+  border: 2px solid #ddd;
+  border-radius: 0;
+  margin-top: 0;
+}
+.terms-wrap {
+  text-align: right;
+}
+.terms-wrap label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #252525;
+  margin-bottom: 3px;
+}
+.terms-wrap input {
+  margin: 3px 0 0 6px;
+}
+
+/* Checkout */
+.confirmation-pane {
+  background: #E9E9E9;
+  padding: 30px 0;
+}
+.customer-pane {
+
+}
+
+.checkout-wrap {
+  max-width: 600px;
+  min-width: 280px;
+}
+
+.payment-pane {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.payment-pane .payment-type {
+  display: none;
+}
+.payment-type-selection .payment-option {
+  float: left;
+  margin-right: 2px;
+  padding: 9px 12px;
+  background: #E2E2E2;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: #252525;
+}
+.payment-type {
+  font-size: 14px;
+  border: solid 1px #E2E2E2;
+  padding: 30px;
+}

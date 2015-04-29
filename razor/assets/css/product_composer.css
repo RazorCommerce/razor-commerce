@@ -1,0 +1,59 @@
+#tab-menu {
+  float: left;
+  width: 200px;
+  margin: 0 25px 150px 0;
+  background: #eee;
+}
+
+#tab-menu .tab-control {
+  width: 100%;
+  cursor: pointer;
+  padding: 8px 20px;
+  color: #575757;
+  border-bottom: solid 1px #e5e5e5;
+}
+#tab-menu .tab-control:hover {
+  background: #ddd;
+}
+#tab-menu .tab-control.active {
+  background: #ccc;
+}
+
+#ccm-panel-detail-page-composer fieldset.tab {
+  float: left;
+  margin: 0 0 150px 0;
+}
+
+#product_basics .form-group.product-type {
+  float: left;
+  width: 32%;
+  margin-right: 25px;
+}
+#product_basics .form-group.product-type label.control-label {
+  float: left;
+  width: 100px;
+  margin-right: 5px;
+}
+#product_basics .form-group.product-type select {
+  float: left;
+  width: 175px;
+}
+#product_basics .form-group.is-virtual {
+  float: left;
+  max-width: 25%;
+  margin-right: 25px;
+}
+#product_basics .form-group.is-downloadable {
+  float: left;
+  max-width: 25%;
+}
+#product_basics .form-group.is-virtual label.control-label,
+#product_basics .form-group.is-downloadable label.control-label {
+  display: none;
+}
+#product_basics .form-group.product-name {
+  clear: both;
+}
+#product_basics .form-group.product-catalog {
+
+}
