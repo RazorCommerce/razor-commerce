@@ -43,14 +43,17 @@ class Cart extends PageController {
 
     // get customer location
     $customer = new CustomerAccount();
-    $billing_address = $customer->ui->getAttribute('billing_address');
-    $country = $billing_address->country;
-    $state = $billing_address->state_province;
+    if( isset( $customer->ui )) {
+      $billing_address = $customer->ui->getAttribute('billing_address');
+      $country = $billing_address->country;
+      $state = $billing_address->state_province;
 
-    // set tax
-    $taxClass = new Tax();
-    $taxes = $taxClass->getByRegion( $country, $state );
-    $this->currentCart->applyTaxes( $taxes );
+      // set tax
+      $taxClass = new Tax();
+      $taxes = $taxClass->getByRegion( $country, $state );
+      $this->currentCart->applyTaxes( $taxes );
+    }
+
     $this->currentCart->updateTotal();
     $this->set( 'cart', $this->currentCart );
   }
