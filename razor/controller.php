@@ -32,7 +32,7 @@ use \Razor\Core\Extension\Extension;
 class Controller extends Package {
 
   protected $pkgHandle = 'razor';
-  protected $appVersionRequired = '5.7.0';
+  protected $appVersionRequired = '5.7.4';
   protected $pkgVersion = '0.9.2.1';
   protected $pkgAutoloaderRegistries = array( 'src' => '\Razor\Core' );
   public $pkg;
