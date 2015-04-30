@@ -9,12 +9,7 @@ use Page;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
-// main class for products
 class Product extends Object {
-
-  public function __construct() {
-
-  }
 
   public static function getByID( $productID ) {
     $product = new Product();
