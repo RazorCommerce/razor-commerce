@@ -9,8 +9,8 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 
 class Page extends Object {
 
-  public function getByID( $id ) {
-    return Page::getByID( $this->id );
+  public static function getByID( $id ) {
+    return Page::getByID( $id );
   }
 
 }
