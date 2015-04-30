@@ -9,6 +9,7 @@ var Checkout = {
     Checkout.showShipping();
     Checkout.setCustomerLocation();
     Checkout.shippingToggle();
+    Checkout.customerLoginToggle();
     Checkout.paymentTypeClick();
   },
 
