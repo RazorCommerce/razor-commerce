@@ -4,8 +4,9 @@ namespace Razor\Core\Product;
 
 use Concrete\Core\Foundation\Object;
 use Razor\Core\Extension\Extension;
+use Razor\Core\Product\Page as ProductPage;
 use Loader;
-use Page;
+
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
@@ -13,14 +14,14 @@ class Product extends Object {
 
   public static function getByID( $productID ) {
     $product = new Product();
-    $productPage = Page::getByID( $productID );
+    $productPage = ProductPage::getByID( $productID );
     $product->loadRequiredFields( $productPage );
     return $product;
   }
 
   public static function getByPath( $productPath ) {
     $product = new Product();
-    $productPage = Page::getByPath( $productPath );
+    $productPage = ProductPage::getByPath( $productPath );
     if( !$productPage->isError()) {
       $product->loadRequiredFields( $productPage );
       return $product;
@@ -29,7 +30,7 @@ class Product extends Object {
   }
 
   public function getProductPage() {
-    return Page::getByID( $this->id );
+    return ProductPage::getByID( $this->id );
   }
 
   protected function loadRequiredFields( $productPage ) {
