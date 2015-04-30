@@ -1,20 +1,16 @@
 <?php
 
 namespace Razor\Core\Product;
-use \Razor\Core\Extension\Extension;
+
+use Concrete\Core\Foundation\Object;
+use Razor\Core\Extension\Extension;
 use Loader;
 use Page;
 
-// main class for products
-class Product {
+defined('C5_EXECUTE') or die(_("Access Denied."));
 
-  protected $id;
-  protected $type;
-  protected $is_virtual;
-  protected $is_downloadable;
-  protected $price_regular;
-  protected $price_special;
-  protected $sku;
+// main class for products
+class Product extends Object {
 
   public function __construct() {
 
