@@ -28,7 +28,7 @@
 	    <?php endforeach; } ?>
 	  </table>
 	  <div class="cart-footer">
-	    <h4 class="cart-total-header"><?php print t('Cart Totals'); ?></h4>
+	    <h4 class="pull-right"><?php print t('Cart Totals'); ?></h4>
 	    <?php Loader::packageElement( 'cart/footer-table', 'razor', array( 'cart' => $cart )); ?>
 	  </div>
 	</div>
