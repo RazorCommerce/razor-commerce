@@ -1,3 +1,11 @@
+<?php
+
+$nh = Loader::helper('navigation');
+$cartPage = Page::getByPath('/cart');
+$cartURL = $nh->getCollectionURL( $cartPage );
+
+?>
+
 <div class="row cart-summary">
 
 	<div class="col-md-11 .col-md-offset-1">
@@ -36,7 +44,7 @@
 	
 	<div class="col-md-11 .col-md-offset-1" style="margin-top: 30px;">
 		<div class="fa fa-arrow-circle-left pull-right">
-		  <a href="">
+		  <a href="<?php print $cartURL; ?>">
 		    <?php print t('Return to Cart'); ?>
 		  </a>
 		</div>
