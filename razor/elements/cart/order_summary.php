@@ -1,13 +1,13 @@
-<h3>Order Summary</h3>
+<h3><?php print t('Order Summary'); ?></h3>
 
 <!-- cart items table -->
 <div id="cart">
   <table class="cart-items">
     <tr>
-      <th class="cart-header product">Product</th>
-      <th class="cart-header price">Price</th>
-      <th class="cart-header quantity">Quantity</th>
-      <th class="cart-header total">Total</th>
+      <th class="cart-header product"><?php print t('Product'); ?></th>
+      <th class="cart-header price"><?php print t('Price'); ?></th>
+      <th class="cart-header quantity"><?php print t('Quantity'); ?></th>
+      <th class="cart-header total"><?php print t('Total'); ?></th>
     </tr>
 
     <?php
@@ -24,7 +24,7 @@
     <?php endforeach; } ?>
   </table>
   <div class="cart-footer">
-    <h2 class="cart-total-header">Cart Totals</h2>
+    <h2 class="cart-total-header"><?php print t('Cart Totals'); ?></h2>
     <?php Loader::packageElement( 'cart/footer-table', 'razor', array( 'cart' => $cart )); ?>
   </div>
 </div>
