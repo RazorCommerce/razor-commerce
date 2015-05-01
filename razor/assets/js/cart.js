@@ -19,6 +19,9 @@ var Cart = {
   },
 
   updateCartTotals: function( totals ) {
+
+    console.log( totals );
+
     $('.subtotal-number').html( totals.subtotal );
     $('.tax-number').html( totals.taxTotal );
     $('.shipping-number').html( totals.shippingTotal );
@@ -30,5 +33,3 @@ var Cart = {
 $( document ).ready(function() {
   Cart.init();
 });
-
-  
