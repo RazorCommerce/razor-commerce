@@ -11,6 +11,9 @@ var Checkout = {
     Checkout.shippingToggle();
     Checkout.customerLoginToggle();
     Checkout.paymentTypeClick();
+    
+    // set default active payment method - this should be set based on what is user chose as default, for now it's always Stripe
+    $('.payment-option-stripe').addClass('active');
   },
 
   /* Apply Taxes to Checkout */
@@ -103,10 +106,11 @@ var Checkout = {
   },
 
   paymentTypeClick: function() {
-    // payment type selection
     $( ".payment-option" ).click( function() {
+      $( ".payment-option" ).removeClass('active');
       var paymentType = $(this).data('payment_type');
       Checkout.paymentTypeSelect( paymentType );
+      $( this ).addClass('active');
     });
   },
 
