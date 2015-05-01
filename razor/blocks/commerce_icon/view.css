@@ -1,0 +1,8 @@
+.commerce-icon {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.commerce-icon i.span {
+  padding-left: 6px;
+}
