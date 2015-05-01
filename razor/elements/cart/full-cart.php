@@ -14,10 +14,10 @@ $cartPage = Page::getByPath( '/cart' );
 
       <tr>
         <th class="cart-header remove">&nbsp;</th>
-        <th class="cart-header product">Product</th>
-        <th class="cart-header price">Price</th>
-        <th class="cart-header quantity">Quantity</th>
-        <th class="cart-header total">Total</th>
+        <th class="cart-header product"><?php print t('Product'); ?></th>
+        <th class="cart-header price"><?php print t('Price'); ?></th>
+        <th class="cart-header quantity"><?php print t('Quantity'); ?></th>
+        <th class="cart-header total"><?php print t('Total'); ?></th>
       </tr>
 
       <?php
@@ -40,7 +40,7 @@ $cartPage = Page::getByPath( '/cart' );
         </tr>
       <?php endforeach; } else { ?>
         <tr>
-          <td class="cart-empty" style="text-align: center;" colspan="5">Your cart is currently empty. Please continue shopping.</td>
+          <td class="cart-empty" style="text-align: center;" colspan="5"><?php print t('Your cart is currently empty. Please continue shopping.'); ?></td>
         </tr>
       <?php } ?>
       <tr>
@@ -49,10 +49,10 @@ $cartPage = Page::getByPath( '/cart' );
     </table>
 
     <div class="cart-footer">
-      <h2 class="cart-total-header">Cart Totals</h2>
+      <h2 class="cart-total-header"><?php print t('Cart Totals'); ?></h2>
       <?php Loader::packageElement( 'cart/footer-table', 'razor', array( 'cart' => $cart )); ?>
       <div class="checkout-button-wrap">
-        <a href="<?php print $checkout_url; ?>" class="btn btn-success" role="button">Continue to Checkout</a>
+        <a href="<?php print $checkout_url; ?>" class="btn btn-success" role="button"><?php print t('Continue to Checkout'); ?></a>
       </div>
     </div>
   </form>

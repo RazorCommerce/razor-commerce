@@ -90,3 +90,6 @@
 .checkout-button-wrap {
   margin-top: 15px;
 }
+.cart-col.remove a:hover { 
+  text-decoration: none;
+}

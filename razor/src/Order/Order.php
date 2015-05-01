@@ -84,15 +84,15 @@ class Order {
   }
 
   public function getTaxTotal() {
-    return $this->taxTotal;
+    return number_format( $this->taxTotal, 2 );
   }
 
   public function getTax() {
-    return $this->tax;
+    return number_format( $this->tax, 2 );
   }
 
   public function getSubtotal() {
-    return $this->subtotal;
+    return number_format( $this->subtotal, 2 );
   }
 
   // add new order
@@ -115,7 +115,7 @@ class Order {
 
   public function getShippingCost() {
     if( is_object( $this->shipping )) {
-      return $this->shipping->getCost();
+      return number_format( $this->shipping->getCost(), 2 );
     }
     return 0.00;
   }
@@ -153,7 +153,7 @@ class Order {
 
   // get the order total
   public function getTotal() {
-    return $this->total;
+    return number_format( $this->total, 2 );
   }
 
   // calculates then updates order total
@@ -183,7 +183,7 @@ class Order {
         $this->subtotal += $item->priceTotal;
       }
     }
-    return $this->subtotal;
+    return number_format( $this->subtotal, 2);
   }
 
   // calculate order total

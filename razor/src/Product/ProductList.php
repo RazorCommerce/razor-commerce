@@ -1,15 +1,17 @@
 <?php
 
 namespace Razor\Core\Product;
-use Concrete\Core\Page\PageList;
-use Loader;
+
+use Database;
 use Page;
 
-// main class for products
-class ProductList extends PageList {
+defined('C5_EXECUTE') or die(_("Access Denied."));
 
-  public function __construct() {
+class ProductList extends AttributedItemList {
 
+  protected function getAttributeKeyClassName()
+  {
+      return '\\Concrete\\Package\\Razor\\Core\\Attribute\\Key\\ProductKey';
   }
 
 }
