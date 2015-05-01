@@ -7,8 +7,8 @@ $shippingSettings = Page::getByPath( '/dashboard/razor/shipping' );
 
 <div class="col-md-3 cart-shipping-options">
   <form action="" method="post">
-    <h3>Shipping Options</h3>
-    <p>Please select a shipping method for your order below.</p>
+    <h3><?php print t('Shipping Options'); ?></h3>
+    <p><?php print t('Please select a shipping method for your order below.'); ?></p>
     <?php
       if( count($shipping_methods)) {
         foreach( $shipping_methods as $sm ) :
@@ -22,7 +22,7 @@ $shippingSettings = Page::getByPath( '/dashboard/razor/shipping' );
         endforeach;
       } else {
     ?>
-      <div class="no-shipping-options">There are no shipping options available for your order!</div>
+      <div class="no-shipping-options"><?php print t('There are no shipping options available for your order!'); ?></div>
     <?php } ?>
   </form>
 </div>
