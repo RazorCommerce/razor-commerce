@@ -34,9 +34,16 @@ class Import extends DashboardPageController {
         } else {
           $file_contents = $file_version->getFileContents();
           $this->xml = simplexml_load_string( $file_contents );
+          if( $object == 'tax_import' ) {
+            $migrate->setType( $object );
+            $migrate->setXML( $this->xml );
+            $migrate->test();
+            $this->set( 'test', $migrate->test );
+          } else {
+            $test = $migrate->importTest( $object, $this->xml );
+            $this->set( 'test', $test);
+          }
           $mode = 'test';
-          $migrate->importTest( $object, $this->xml );
-          $this->set( 'test', $migrate->test );
         }
         $this->set( 'file_id', $file_id );
       }
@@ -55,7 +62,13 @@ class Import extends DashboardPageController {
       } else {
         $file_contents = $file_version->getFileContents();
         $this->xml = simplexml_load_string( $file_contents );
-        $migrate->import( $object, $this->xml );
+        if( $object == 'tax_import' ) {
+          $migrate->setType( $object );
+          $migrate->setXML( $this->xml );
+          $migrate->execute();
+        } else {
+          $migrate->import( $object, $this->xml );
+        }
         $this->set( 'result', $migrate->result );
       }
     }

@@ -26,11 +26,15 @@ $fm = Core::make('helper/concrete/file_manager');
     <div class="migration-test">
       <h3>Import Test</h3>
       <p>Based on the test of the planned import the following objects will be processed during migrate execution.</p>
-      <ul>
-        <li>Total Objects: <?php print $test['count']; ?></li>
-        <li>Object to Update: <?php print $test['exists']; ?></li>
-        <li>Objects to Create: <?php print $test['new']; ?></li>
-      </ul>
+
+      <?php if( isset($test) && !is_object($test)) : ?>
+        <ul>
+          <li>Total Objects: <?php print $test['count']; ?></li>
+          <li>Object to Update: <?php print $test['exists']; ?></li>
+          <li>Objects to Create: <?php print $test['new']; ?></li>
+        </ul>
+      <?php endif; ?>
+
     </div>
     <div class="ccm-dashboard-form-actions-wrapper">
       <div class="ccm-dashboard-form-actions">

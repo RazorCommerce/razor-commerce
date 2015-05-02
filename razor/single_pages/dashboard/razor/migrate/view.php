@@ -24,6 +24,10 @@
         <td>File Import</td>
         <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/file'); ?>">Run</a></td>
       </tr>
+      <tr>
+        <td>Tax Import</td>
+        <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/tax'); ?>">Run</a></td>
+      </tr>
     </tbody>
   </table>
 

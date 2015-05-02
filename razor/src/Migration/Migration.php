@@ -2,6 +2,7 @@
 
 namespace Razor\Core\Migration;
 
+use \Razor\Core\Migration\Test\Test as MigrationTest;
 use \Razor\Core\Migration\Product\Export as ProductExport;
 use \Razor\Core\Migration\Product\Import as ProductImport;
 use \Razor\Core\Migration\Catalog\Export as CatalogExport;
@@ -15,6 +16,32 @@ class Migration {
   public $update;
   public $test;
   public $result;
+  public $xml;
+
+  public function setType( $handle ) {
+    switch( $handle ) {
+      case "tax_import":
+        $this->type = new \Razor\Core\Migration\Type\TaxImport();
+        break;
+    }
+  }
+
+  public function setXML( $xml ) {
+    $this->xml = $xml;
+  }
+
+  public function getXML() {
+    return $this->xml;
+  }
+
+  public function test() {
+    $this->test = new MigrationTest();
+    $this->test->setXML( $this->xml );
+    $conditions = $this->type->conditions();
+    $this->test->setConditions( $conditions );
+    $this->test->setType( $this->type );
+    $this->test->run();
+  }
 
   // test an import
   public function importTest( $object, $xml ) {
@@ -39,6 +66,11 @@ class Migration {
       $pi = new CatalogImport();
       $this->result = $pi->importCatalog( $xml );
     }
+  }
+
+  // new execute method to replace import()
+  public function execute() {
+    $this->type->execute( $this->xml );
   }
 
 }
