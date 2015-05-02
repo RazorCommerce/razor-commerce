@@ -20,4 +20,13 @@
       <?php endforeach; endif; ?>
     </tbody>
   </table>
+  
+  <div class="col-md-12 text-center">
+    <?php
+      if( $paginator->getTotalPages() > 1 ) {
+        print $pagination;
+      }
+    ?>
+  </div>
+  
 </div>
