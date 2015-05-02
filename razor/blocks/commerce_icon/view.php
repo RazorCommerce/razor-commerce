@@ -11,9 +11,3 @@ defined('C5_EXECUTE') or die("Access Denied.");
     </a>
   </h3>
 </div>
-
-<style>
-  .commerce-icon i.span {
-    padding-left: 6px;
-  }
-</style>

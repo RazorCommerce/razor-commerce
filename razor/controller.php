@@ -176,25 +176,17 @@ class Controller extends Package {
 
   // add terms and conditions page
   public function add_terms_conditions_page() {
-    if( Page::getByPath( '/terms' )->getCollectionID() <= 0 ) {
-      return;
+    $termsPage = Page::getByPath( '/terms' );
+    if( $termsPage->isError() ) {
+      $pt = PageType::getByHandle('page');
+      $ptemplate = PageTemplate::getByHandle('full');
+      $data = array(
+        'cHandle' => 'terms',
+        'cName' => 'Terms',
+      );
+      $homepage = Page::getByID( HOME_CID );
+      $terms_page = $homepage->add( $pt, $data, $ptemplate );
     }
-    $pt = PageType::getByHandle('page');
-    $ptemplate = PageTemplate::getByHandle('full');
-    $data = array(
-      'cHandle' => 'terms',
-      'cName' => 'Terms & Conditions',
-      'pkgID' => $this->pkg->getPackageID(),
-    );
-    $homepage = Page::getByID( HOME_CID );
-    $terms_page = $homepage->add( $pt, $data, $ptemplate );
-    $terms_blocks = $terms_page->getBlocks( 'Main' );
-    $terms_content = $terms_blocks[0];
-    $block_controller = $terms_content->getController();
-    $args = array(
-      'content' => '<h1>Terms and Conditions</h1>',
-    );
-    $block_controller->save( $args );
   }
 
   public function add_block_types() {

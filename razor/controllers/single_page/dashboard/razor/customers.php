@@ -14,9 +14,11 @@ class Customers extends DashboardPageController {
 
   public function view() {
     $cl = new CustomerList();
-    $users = $cl->getResults();
-    $this->set('cl', $cl);
-    $this->set('users', $users);
+    $paginator = $cl->getPagination();
+    $pagination = $paginator->renderDefaultView();
+    $this->set( 'users', $paginator->getCurrentPageResults() );
+    $this->set( 'pagination', $pagination );
+    $this->set( 'paginator', $paginator );
   }
 
 }

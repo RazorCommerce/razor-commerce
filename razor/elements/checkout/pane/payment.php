@@ -12,7 +12,7 @@ print $form->hidden( 'payment_type', 'stripe' );
       if( count($payment_methods)) {
         foreach( $payment_methods as $pm ) {
     ?>
-      <div class="payment-option" data-payment_type="<?php print $pm->getHandle(); ?>"><?php print $pm->getName(); ?></div>
+      <div class="payment-option payment-option-<?php print $pm->getHandle(); ?>" data-payment_type="<?php print $pm->getHandle(); ?>"><?php print $pm->getName(); ?></div>
     <?php } } ?>
   </div>
 
