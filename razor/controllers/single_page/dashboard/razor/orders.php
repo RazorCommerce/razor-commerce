@@ -14,9 +14,11 @@ class Orders extends DashboardPageController {
       $ol->filterByCustomer( $customerID );
     }
 
-    $orders = $ol->getResults();
-    $this->set('ol', $ol);
-    $this->set('orders', $orders);
+    $paginator = $ol->getPagination();
+    $pagination = $paginator->renderDefaultView();
+    $this->set( 'orders', $paginator->getCurrentPageResults() );
+    $this->set( 'pagination', $pagination );
+    $this->set( 'paginator', $paginator );
   }
 
 }

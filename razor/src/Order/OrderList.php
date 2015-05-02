@@ -2,12 +2,16 @@
 
 namespace Razor\Core\Order;
 
-use Concrete\Core\Search\ItemList\Database\AttributedItemList as DatabaseItemList;
-use Loader;
+use Concrete\Core\Search\ItemList\Database\AttributedItemList;
+use Pagerfanta\Adapter\DoctrineDbalAdapter;
+use Concrete\Core\Search\Pagination\Pagination;
 use \Razor\Core\Order\Order;
 use \Razor\Core\Order\Item as OrderItem;
 
-class OrderList extends DatabaseItemList {
+
+defined('C5_EXECUTE') or die(_("Access Denied."));
+
+class OrderList extends AttributedItemList {
 
   protected function getAttributeKeyClassName() {
     return '\\Concrete\\Core\\Attribute\\Key\\ColletionKey';
