@@ -291,32 +291,12 @@ class Controller extends Package {
   // add fields using Field API
   public function add_fields() {
 
-    $field = new Field( $this->pkg, 'user' );
-
-    // customer contact fields
-    $field->addSet( 'customer_contact', 'Customer Contact' );
-    $field->add( 'first_name', 'First Name' );
-    $field->set( 'customer_contact' );
-    $field->add( 'last_name', 'Last Name' );
-    $field->set( 'customer_contact' );
-    $field->add( 'phone', 'Phone' );
-    $field->set( 'customer_contact' );
-
-    // customer addresses
-    $field->addSet( 'customer_address', 'Customer Address' );
-    $field->add( 'billing_address', 'Billing Address', 'address' );
-    $field->set( 'customer_address' );
-    $field->add( 'shipping_address', 'Shipping Address', 'address' );
-    $field->set( 'customer_address' );
+    $f = new InstallFields( $this->pkg );
+    $f->install();
 
     // product fields
     $pfi = new InstallProductFields( $this->pkg );
-    $pfi->install();
     $pfi->composer();
-
-    // other fields
-    $f = new InstallFields( $this->pkg );
-    $f->install();
 
   }
 

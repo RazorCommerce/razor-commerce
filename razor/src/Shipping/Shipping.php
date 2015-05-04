@@ -55,33 +55,6 @@ class Shipping {
     return Shipping::setting('enable_shipping');
   }
 
-  public function install_fields() {
-    $pkg = Package::getByHandle('razor');
-    $field = new Field( $pkg );
-    $field->addSet( 'razor_shipping_settings', 'Razor Shipping Settings' );
-
-    $field->add( 'enable_shipping', 'Enable Shipping', 'boolean' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'enable_flat_rate_shipping', 'Enable Flat Rate Shipping', 'boolean' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'enable_free_shipping', 'Enable Free Shipping', 'boolean' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'flat_rate_shipping_cost_per_order', 'Cost Per Order', 'number' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'free_shipping_minimum_order', 'Minimum Order', 'number' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'enable_pickup_shipping', 'Enable Pickup Shipping', 'boolean' );
-    $field->set( 'razor_shipping_settings' );
-
-    $field->add( 'pickup_shipping_location', 'Pickup Location' );
-    $field->set( 'razor_shipping_settings' );
-  }
-
   public static function setting( $settingHandle ) {
     $settings = Page::getByPath('/dashboard/razor/shipping');
     return $settings->getAttribute( $settingHandle );
