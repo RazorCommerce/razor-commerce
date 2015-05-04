@@ -6,8 +6,8 @@
 
 <div class="ccm-dashboard-content-full">
   <div class="dashboard-link">
-    <a href="<?php print $url['orders']; ?>">
-      <i class="fa fa-money"></i>
+    <a href="<?php print $url['order']; ?>">
+      <i class="fa fa-file-text-o"></i>
       Orders
     </a>
   </div>

@@ -29,7 +29,7 @@ use \UserInfo;
           <td><a href="<?php print $this->url( 'dashboard/users/search/view/' . $o->customerID ); ?>"><?php print $o->customerName; ?></a></td>
           <td class="text-right"><?php print '$' . number_format( $o->getTotal(), 2 ); ?></td>
           <td>
-            <a class="btn btn-default">View Order Details</a>
+            <a href="<?php print $this->url('dashboard/order/detail'); ?>/<?php print $o->getOrderID(); ?>/" class="btn btn-default">View Order Details</a>
           </td>
         </tr>
       <?php endforeach; endif; ?>

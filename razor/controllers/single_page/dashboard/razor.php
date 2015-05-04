@@ -11,7 +11,7 @@ class Razor extends DashboardPageController {
   public function on_start() {
     $this->requireAsset('css', 'razor_css');
     $this->pages = array(
-      'products', 'orders', 'customers', 'migrate', 'payment',  'shipping', 'tax', 'settings'
+      'products', 'order', 'customers', 'migrate', 'payment',  'shipping', 'tax', 'settings'
     );
   }
 
