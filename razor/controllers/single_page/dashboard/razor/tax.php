@@ -27,7 +27,7 @@ class Tax extends DashboardPageController {
     $count = count( $data['tax_name'] );
     $index = 0;
     $taxes = array();
-    while( $count > $index ) {
+    while( $count >= $index ) {
 
       if( $data['tax_name'][$index] == 'xyz' ||
         $data['tax_name'][$index] == '' ||
