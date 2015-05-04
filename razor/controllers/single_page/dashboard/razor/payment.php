@@ -8,7 +8,7 @@ class Payment extends DashboardPageController {
 
   public function on_start() {
     $this->requireAsset('css', 'razor_css');
-    $this->set('pageTitle', 'Payment Type Settings');
+    $this->set('pageTitle', 'Payment Settings');
 
     // load fields
     $fieldHandles = array(
