@@ -41,13 +41,6 @@ class TaxImport extends MigrationType {
     $tc->setTest( 'Razor\Core\Migration\Type\TaxImport', 'hasTaxes' );
     $conditions[] = $tc;
 
-    $tc = new TestCondition();
-    $tc->setName('Taxes');
-    $tc->setRequired( true );
-    $tc->setMessage = 'You suck dick and I won\'t let you import shit bitch!';
-    $tc->setTest('Razor\Core\Migration\Type\TaxImport', 'failer');
-    $conditions[] = $tc;
-
     return $conditions;
   }
 

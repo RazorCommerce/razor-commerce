@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <td>Tax Import</td>
-        <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/tax'); ?>">Run</a></td>
+        <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/tax_import'); ?>">Run</a></td>
       </tr>
     </tbody>
   </table>
