@@ -16,6 +16,42 @@ class Customer {
   public $email;
   public $ui; // user info object
 
+  public static function getByID( $customerID ) {
+    $customer = new Customer;
+    $customer->id = $customerID;
+    $customer->ui = UserInfo::getByID( $customerID );
+    $customer->email = $customer->ui->uEmail;
+    return $customer;
+  }
+
+  public function getCustomerID() {
+    return $this->id;
+  }
+
+  public function getBillingAddress() {
+    return $this->ui->getAttribute('billing_address');
+  }
+
+  public function getShippingAddress() {
+    return $this->ui->getAttribute('shipping_address');
+  }
+
+  public function getPhone() {
+    return $this->ui->getAttribute('phone');
+  }
+
+  public function getFirstName() {
+    return $this->ui->getAttribute('first_name');
+  }
+
+  public function getLastName() {
+    return $this->ui->getAttribute('last_name');
+  }
+
+  public function getEmail() {
+    return $this->email;
+  }
+
   // returns the CustomerAccount if available
   public function getAccount() {
     $ca = new CustomerAccount();

@@ -29,6 +29,17 @@ class Order {
     return $this->items;
   }
 
+  public function isShippable( $text = false ) {
+    if( $text ) {
+      if( $this->shippable ) {
+        return "Yes";
+      } else {
+        return "No";
+      }
+    }
+    return $this->shippable;
+  }
+
   public function getItemList() {
     $db = Loader::db();
     $items = array();
@@ -88,11 +99,15 @@ class Order {
   }
 
   public function getTax() {
-    return number_format( $this->tax, 2 );
+    return $this->tax;
   }
 
   public function getSubtotal() {
     return number_format( $this->subtotal, 2 );
+  }
+
+  public function getOrderDate() {
+    return $this->orderDate;
   }
 
   // add new order
@@ -118,6 +133,11 @@ class Order {
       return number_format( $this->shipping->getCost(), 2 );
     }
     return 0.00;
+  }
+
+  public function getCustomer() {
+    $customer = \Razor\Core\Customer\Customer::getByID( $this->customerID );
+    return $customer;
   }
 
   // returns order
@@ -194,6 +214,10 @@ class Order {
     if( is_object( $this->shipping )) {
       $this->total += $this->shipping->getCost();
     }
+  }
+
+  public function getStatus() {
+    return $this->status;
   }
 
 }
