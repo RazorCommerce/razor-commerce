@@ -17,18 +17,18 @@ $form = Core::make('helper/form');
     <legend>Checkout Settings</legend>
 
     <div class="checkbox" style="margin-left: 20px;">
-      <?php // Field::render( 'collect_customer_addresses', 'collection', $page->getCollectionID() ); ?>
+      <?php // Field::render( 'collect_customer_addresses', 'collection', $settingCID ); ?>
     </div>
 
     <div class="checkbox" style="margin-left: 20px;">
-      <?php // Field::render( 'enable_anonymous_checkout', 'collection', $page->getCollectionID() ); ?>
+      <?php // Field::render( 'enable_anonymous_checkout', 'collection', $settingCID ); ?>
     </div>
 
     -->
 
     <div style="margin-top: 15px;">
       <?php print $form->label('store_location', 'Store Location'); ?>
-      <?php Field::render( 'store_location', 'collection', $page->getCollectionID() ); ?>
+      <?php Field::render( 'store_location', 'collection', $settingCID ); ?>
     </div>
 
     <div class="ccm-dashboard-form-actions-wrapper">
