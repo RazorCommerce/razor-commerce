@@ -15,6 +15,13 @@ class Shipping {
     $this->order = $order;
   }
 
+  public function getMethod() {
+    if( $this->shipping_method ) {
+      return $this->shipping_method;
+    }
+    return false;
+  }
+
   public function getMethodHandle() {
     return $this->shipping_method->getHandle();
   }

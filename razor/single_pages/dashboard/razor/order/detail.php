@@ -1,12 +1,8 @@
 <div class="row">
 
-  <div class="col-md-4">
+  <div class="col-md-6">
+    <h3>Order Details</h3>
     <table class="table striped">
-      <tr>
-        <th colspan="2" class="text-center">
-          <h4>Order Details</h4>
-        </th>
-      </tr>
       <tr>
         <td>Order ID</td>
         <td><?php print $order->getOrderID(); ?></td>
@@ -43,13 +39,9 @@
   </div>
 
   <!-- Customer -->
-  <div class="col-md-4">
+  <div class="col-md-6">
+    <h3>Customer Details</h3>
     <table class="table striped">
-      <tr>
-        <th colspan="2" class="text-center">
-          <h4>Customer Details</h4>
-        </th>
-      </tr>
       <tr>
         <td>Customer ID</td>
         <td><?php print $customer->getCustomerID(); ?></td>
@@ -83,6 +75,7 @@
 
   <!-- Order Items -->
   <div class="col-md-12">
+    <h3>Order Items</h3>
     <table class="table striped">
       <tr>
         <th class="cart-header product"><?php print t('Product ID'); ?></th>
@@ -113,8 +106,9 @@
     </table>
   </div>
 
-  <!-- Order Items -->
+  <!-- Taxes -->
   <div class="col-md-12">
+    <h3>Taxes</h3>
     <table class="table striped">
       <tr>
         <th class=""><?php print t('Tax ID'); ?></th>
@@ -144,10 +138,31 @@
     </table>
   </div>
 
+  <!-- Shipping -->
+  <div class="col-md-12">
+    <h3>Shipping</h3>
+    <table class="table striped">
+      <tr>
+        <th class=""><?php print t('Shipping Method'); ?></th>
+        <th class=""><?php print t('Description'); ?></th>
+        <th class=""><?php print t('Cost'); ?></th>
+      </tr>
+
+      <?php
+        if( $sm = $order->getShipping()->getMethod() ) {
+      ?>
+        <tr>
+          <td class=""><?php print $sm->getName(); ?></td>
+          <td class=""><?php print $sm->getDescription(); ?></td>
+          <td><?php print '$' . number_format( $order->getShippingCost(), 2 ); ?></td>
+        </tr>
+      <?php } else { ?>
+        <tr>
+          <td class="cart-empty" style="text-align: center;" colspan="5"><?php print t('No shipping method set for this order.'); ?></td>
+        </tr>
+      <?php } ?>
+
+    </table>
+  </div>
+
 </div>
-
-<?php
-
-var_dump( $order->getShipping() );
-
-?>

@@ -104,8 +104,10 @@ class Order {
     }
     $taxDecoded = json_decode( $this->tax );
     $taxes = array();
-    foreach( $taxDecoded as $taxRow ) {
-      $taxes[] = \Razor\Core\Tax\Tax::getByID( $taxRow->id );
+    if( $taxDecoded ) {
+      foreach( $taxDecoded as $taxRow ) {
+        $taxes[] = \Razor\Core\Tax\Tax::getByID( $taxRow->id );
+      }
     }
     return $taxes;
   }

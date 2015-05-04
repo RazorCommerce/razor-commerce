@@ -381,7 +381,10 @@ class Controller extends Package {
 			if( Page::getByPath( $pageHandle )->getCollectionID() <= 0 ) {
         $sp = SinglePage::add( $pageHandle, $this->pkg );
       }
-      if( $pageHandle == '/dashboard/razor/migrate/import' || $pageHandle == '/dashboard/razor/migrate/export' ) {
+      if( $pageHandle == '/dashboard/razor/migrate/import' ||
+        $pageHandle == '/dashboard/razor/migrate/export' ||
+        $pageHandle == '/dashboard/razor/order/detail'
+        ) {
         $page = Page::getByPath( $pageHandle );
         $page->setAttribute( 'exclude_nav', true );
       }
