@@ -19,11 +19,11 @@ class FreeShipping extends ShippingMethod {
   }
 
   public function available( $order ) {
-    $enabled = Shipping::setting('enable_free_shipping');
+    $enabled = \Razor\Core\Setting\Setting::get('enable_free_shipping');
     if( !$enabled ) {
       return false;
     }
-    $minimumOrder = Shipping::setting('free_shipping_minimum_order');
+    $minimumOrder = \Razor\Core\Setting\Setting::get('free_shipping_minimum_order');
     $orderTotal = $order->getSubtotal();
     if( $orderTotal >= $minimumOrder ) {
       return true;

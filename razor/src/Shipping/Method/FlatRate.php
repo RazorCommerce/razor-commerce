@@ -19,7 +19,7 @@ class FlatRate extends ShippingMethod {
   }
 
   public function available( $order ) {
-    $enabled = Shipping::setting('enable_flat_rate_shipping');
+    $enabled = \Razor\Core\Setting\Setting::get('enable_flat_rate_shipping');
     if( !$enabled ) {
       return false;
     }
@@ -27,7 +27,7 @@ class FlatRate extends ShippingMethod {
   }
 
   public function calculateCost() {
-    return Shipping::setting('flat_rate_shipping_cost_per_order');
+    return \Razor\Core\Setting\Setting::get('flat_rate_shipping_cost_per_order');
   }
 
 }

@@ -14,8 +14,9 @@ class Setting {
     $this->sp = Page::getByPath( SETTINGS_PATH );
   }
 
-  public function get( $settingHandle ) {
-    return $this->sp->getAttribute( $settingHandle );
+  public static function get( $settingHandle ) {
+    $setting = new Setting();
+    return $setting->sp->getAttribute( $settingHandle );
   }
 
   public function set( $settingHandle, $value ) {

@@ -3,6 +3,7 @@
 namespace Razor\Core\Shipping;
 use \Razor\Core\Shipping\Method\Method as ShippingMethod;
 use \Razor\Core\Field\Field;
+use \Razor\Core\Setting\Setting;
 use \Razor\Core\Extension\Extension;
 use Loader;
 use Package;
@@ -52,12 +53,7 @@ class Shipping {
   }
 
   public function is_enabled() {
-    return Shipping::setting('enable_shipping');
-  }
-
-  public static function setting( $settingHandle ) {
-    $settings = Page::getByPath('/dashboard/razor/shipping');
-    return $settings->getAttribute( $settingHandle );
+    return Setting::get('enable_shipping');
   }
 
 }

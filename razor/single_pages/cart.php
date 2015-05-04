@@ -1,9 +1,4 @@
 <?php
-
-use \Razor\Core\Setting\Setting;
-$setting = new Setting();
-$setting->setDefaults();
-
 defined('C5_EXECUTE') or die("Access Denied.");
 $args = array(
   'cart' => $cart,

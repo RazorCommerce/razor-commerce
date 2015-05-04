@@ -19,7 +19,7 @@ class Pickup extends ShippingMethod {
   }
 
   public function available( $order ) {
-    $enabled = Shipping::setting('enable_pickup_shipping');
+    $enabled = \Razor\Core\Setting\Setting::get('enable_pickup_shipping');
     if( !$enabled ) {
       return false;
     }
