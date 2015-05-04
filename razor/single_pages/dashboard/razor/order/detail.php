@@ -119,7 +119,7 @@
       </tr>
 
       <?php
-        if( count( $order->getTax() ) ) {
+        if( $order->getTax() ) {
           foreach( $order->getTax() as $tax ):
       ?>
         <tr>
