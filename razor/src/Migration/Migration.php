@@ -23,6 +23,9 @@ class Migration {
       case "tax_import":
         $this->type = new \Razor\Core\Migration\Type\TaxImport();
         break;
+      case "setting_import":
+        $this->type = new \Razor\Core\Migration\Type\SettingImport();
+        break;
     }
   }
 

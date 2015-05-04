@@ -21,6 +21,10 @@ class Type extends Object {
     return "Migration type for migrating (import or export) data.";
   }
 
+  public function getImportNodeName() {
+    return false;
+  }
+
   public function conditions() {
 
   }
