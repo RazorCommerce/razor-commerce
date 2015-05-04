@@ -14,23 +14,23 @@ $form = Core::make('helper/form');
         <legend>Stripe API Settings</legend>
         <div class="form-group">
           <?php print $form->label('stripe_mode', 'Stripe Mode'); ?>
-          <?php Field::render( 'stripe_mode', 'collection', $page->getCollectionID() ); ?>
+          <?php Field::render( 'stripe_mode', 'collection', $settingCID ); ?>
         </div>
         <div class="form-group">
           <?php print $form->label('stripe_test_secret_key', 'Test Secret Key'); ?>
-          <?php Field::render( 'stripe_test_secret_key', 'collection', $page->getCollectionID() ); ?>
+          <?php Field::render( 'stripe_test_secret_key', 'collection', $settingCID ); ?>
         </div>
         <div class="form-group">
           <?php print $form->label('stripe_test_publishable_key', 'Test Publishable Key'); ?>
-          <?php Field::render( 'stripe_test_publishable_key', 'collection', $page->getCollectionID() ); ?>
+          <?php Field::render( 'stripe_test_publishable_key', 'collection', $settingCID ); ?>
         </div>
         <div class="form-group">
           <?php print $form->label('stripe_live_secret_key', 'Live Secret Key'); ?>
-          <?php Field::render( 'stripe_live_secret_key', 'collection', $page->getCollectionID() ); ?>
+          <?php Field::render( 'stripe_live_secret_key', 'collection', $settingCID ); ?>
         </div>
         <div class="form-group">
           <?php print $form->label('stripe_live_publishable_key', 'Live Publishable Key'); ?>
-          <?php Field::render( 'stripe_live_publishable_key', 'collection', $page->getCollectionID() ); ?>
+          <?php Field::render( 'stripe_live_publishable_key', 'collection', $settingCID ); ?>
         </div>
       </fieldset>
 
