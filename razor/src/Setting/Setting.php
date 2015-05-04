@@ -6,6 +6,7 @@ use Concrete\Core\Attribute\Key\CollectionKey as AttributeCollectionKey;
 use Page;
 
 define('SETTINGS_PATH', '/dashboard/razor');
+define('SETTINGS_COLLECTION_ID', Page::getByPath( SETTINGS_PATH )->getCollectionID() );
 
 class Setting {
 
@@ -21,11 +22,24 @@ class Setting {
     $this->sp->setAttribute( $settingHandle, $value );
   }
 
+  public function getSettingPath() {
+    return SETTINGS_PATH;
+  }
+
+  public function getSettingCollectionID() {
+    return SETTINGS_COLLECTION_ID;
+  }
+
+  public function getSettingAKID( $settingHandle ) {
+    $ak = AttributeCollectionKey::getByHandle( $settingHandle );
+    return $ak->getAttributeKeyID();
+  }
+
   public function getSettingName( $settingHandle ) {
     $ak = AttributeCollectionKey::getByHandle( $settingHandle );
     return $ak->getAttributeKeyDisplayName();
   }
-  
+
   public function setDefaults() {
     $defaults = $this->getDefaults();
     foreach( $defaults as $settingHandle => $value ) {
@@ -42,7 +56,7 @@ class Setting {
       'free_shipping_minimum_order' => null,
       'enable_pickup_shipping' => false,
       'pickup_shipping_location' => null,
-    )
+    );
     return $defaults;
   }
 

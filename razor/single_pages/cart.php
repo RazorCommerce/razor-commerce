@@ -2,9 +2,7 @@
 
 use \Razor\Core\Setting\Setting;
 $setting = new Setting();
-
-$name = $setting->getSettingName('enable_shipping');
-var_dump( $name );
+$setting->setDefaults();
 
 defined('C5_EXECUTE') or die("Access Denied.");
 $args = array(
