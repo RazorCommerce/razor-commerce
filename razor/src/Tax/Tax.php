@@ -1,11 +1,39 @@
 <?php
 
 namespace Razor\Core\Tax;
-use Loader;
-use \stdClass;
 
-// handling of taxes
-class Tax {
+use Concrete\Core\Foundation\Object;
+use Loader;
+
+class Tax extends Object {
+
+  public static function getByID( $taxID ) {
+    $db = Loader::db();
+    $tax = new Tax();
+    $row = $db->getRow("select * from RazorTax where taxID = ? ", array( $taxID ));
+    $tax->setPropertiesFromArray( $row );
+    return $tax;
+  }
+
+  public function getTaxID() {
+    return $this->taxID;
+  }
+
+  public function getTaxName() {
+    return $this->name;
+  }
+
+  public function getCountry() {
+    return $this->country;
+  }
+
+  public function getRegion() {
+    return $this->region;
+  }
+
+  public function getRate() {
+    return $this->rate;
+  }
 
   public function getByRegion( $country, $state ) {
     $db = Loader::db();

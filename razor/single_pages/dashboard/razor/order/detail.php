@@ -39,14 +39,6 @@
         <td>Order Grand Total</td>
         <td><?php print '$' . number_format( $order->getTotal(), 2 ); ?></td>
       </tr>
-      <tr>
-        <td>Taxes</td>
-        <td><?php var_dump( $order->getTax() ); ?></td>
-      </tr>
-      <tr>
-        <td>Shipping</td>
-        <td><?php var_dump( $order->getShipping() ); ?></td>
-      </tr>
     </table>
   </div>
 
@@ -121,11 +113,41 @@
     </table>
   </div>
 
+  <!-- Order Items -->
+  <div class="col-md-12">
+    <table class="table striped">
+      <tr>
+        <th class=""><?php print t('Tax ID'); ?></th>
+        <th class=""><?php print t('Name'); ?></th>
+        <th class=""><?php print t('Country'); ?></th>
+        <th class=""><?php print t('Region'); ?></th>
+        <th class=""><?php print t('Rate'); ?></th>
+      </tr>
+
+      <?php
+        if( count( $order->getTax() ) ) {
+          foreach( $order->getTax() as $tax ):
+      ?>
+        <tr>
+          <td class=""><?php print $tax->getTaxID(); ?></td>
+          <td class=""><?php print $tax->getTaxName(); ?></td>
+          <td class=""><?php print $tax->getCountry(); ?></td>
+          <td class=""><?php print $tax->getRegion(); ?></td>
+          <td class=""><?php print $tax->getRate(); ?></td>
+        </tr>
+      <?php endforeach; } else { ?>
+        <tr>
+          <td class="cart-empty" style="text-align: center;" colspan="5"><?php print t('No taxes applied to this order.'); ?></td>
+        </tr>
+      <?php } ?>
+
+    </table>
+  </div>
+
 </div>
 
 <?php
 
-var_dump( $order );
-var_dump( $customer );
+var_dump( $order->getShipping() );
 
 ?>

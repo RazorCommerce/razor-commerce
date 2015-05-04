@@ -99,7 +99,15 @@ class Order {
   }
 
   public function getTax() {
-    return $this->tax;
+    if( !$this->tax ) {
+      return false;
+    }
+    $taxDecoded = json_decode( $this->tax );
+    $taxes = array();
+    foreach( $taxDecoded as $taxRow ) {
+      $taxes[] = \Razor\Core\Tax\Tax::getByID( $taxRow->id );
+    }
+    return $taxes;
   }
 
   public function getSubtotal() {

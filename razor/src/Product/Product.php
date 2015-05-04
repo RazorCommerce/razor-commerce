@@ -7,7 +7,6 @@ use Razor\Core\Extension\Extension;
 use Razor\Core\Product\Page as ProductPage;
 use Loader;
 
-
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 class Product extends Object {
