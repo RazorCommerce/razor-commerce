@@ -20,10 +20,7 @@ use Concrete\Core\Attribute\Set as AttributeSet;
 use Concrete\Core\Attribute\Type as AttributeType;
 use \Razor\Core\Order\Cart\Cart;
 use Concrete\Core\Page\Theme\Theme;
-use \Razor\Core\Field\Field;
 use \Razor\Core\Install\Install;
-use \Razor\Core\Product\Install\Fields as InstallProductFields;
-use \Razor\Core\Install\Fields as InstallFields;
 use \Razor\Core\Product\Product;
 use \Razor\Core\Payment\Payment;
 use \Razor\Core\Shipping\Shipping;
@@ -113,15 +110,15 @@ class Controller extends Package {
     $pkg = parent::install();
     $this->pkg = $pkg;
 
-    $install = new Install();
-
     $blockSetInstall = new \Razor\Core\Install\BlockSet( $this->pkg );
     $this->add_block_types();
     $this->add_single_pages();
     $this->add_page_types();
     $this->add_pagetype_default_blocks();
     $this->add_attribute_types();
-    $this->add_fields();
+
+    $install = new Install( $pkg );
+
     $this->add_pages();
     $this->install_extensions();
   }
@@ -286,18 +283,6 @@ class Controller extends Package {
     $akc = AttributeKeyCategory::getByHandle('collection');
     $akc->associateAttributeKeyType( $at_price );
     $akc->associateAttributeKeyType( $at_cm );
-  }
-
-  // add fields using Field API
-  public function add_fields() {
-
-    $f = new InstallFields( $this->pkg );
-    $f->install();
-
-    // product fields
-    $pfi = new InstallProductFields( $this->pkg );
-    $pfi->composer();
-
   }
 
   public function add_page_types() {

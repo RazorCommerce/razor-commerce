@@ -2,8 +2,7 @@
 
 namespace Razor\Core\Install;
 
-use \Razor\Core\Field\Field;
-use \Razor\Core\Shipping\Shipping;
+use Razor\Core\Field\Field;
 
 class Fields {
 
