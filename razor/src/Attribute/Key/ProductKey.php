@@ -87,11 +87,15 @@ class ProductKey extends AttributeKey {
   public static function add($type, $args, $pkg = false) {
     $ak = parent::add('product', $type, $args, $pkg);
 
-    extract($args);
+    if( isset( $args['pakProductOption'] )) {
+      $pakProductOption = $args['pakProductOption'];
+    } else {
+      $pakProductOption = false;
+    }
 
-    $v = array($ak->getAttributeKeyID());
+    $v = array( $ak->getAttributeKeyID(), $pakProductOption );
     $db = Database::get();
-    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID) VALUES (?)', $v);
+    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID) VALUES (?, ?)', $v);
 
     $nak = new ProductKey();
     $nak->load($ak->getAttributeKeyID());

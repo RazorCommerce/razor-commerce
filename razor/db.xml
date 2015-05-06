@@ -11,6 +11,9 @@
   </table>
   <table name="RazorProductAttributeKeys">
     <field name="akID" type="I"><key/><unsigned/></field>
+    <field name="pakProductOption" type="I1" size="1"></field>
+    <field name="pakProductOptionValues" type="X2"></field>
+    <field name="pakProductOptionDefault" type="C" size="255"></field>
   </table>
   <table name="RazorProductAttributeValues">
     <field name="pID" type="I"><key/><unsigned/></field>
