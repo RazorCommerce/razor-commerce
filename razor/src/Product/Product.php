@@ -7,17 +7,76 @@ use Razor\Core\Extension\Extension;
 use Razor\Core\Product\Page as ProductPage;
 use Loader;
 use Database;
+use \Concrete\Package\Razor\Src\Attribute\Key\ProductKey;
+use \Concrete\Package\Razor\Src\Attribute\Value\ProductValue;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 class Product extends Object {
 
-  public static function getByID( $productID ) {
+  public static function getByID( $pID ) {
+    $db = Database::get();
+    $data = $db->GetRow('select * from RazorProduct where pID = ?', $pID);
     $product = new Product();
-    $productPage = ProductPage::getByID( $productID );
-    $product->loadRequiredFields( $productPage );
+    $product->setPropertiesFromArray( $data );
     return $product;
   }
+
+  /*
+   * Attribute Handling Methods
+   */
+
+  public function setAttribute($ak, $value) {
+    if (!is_object($ak)) {
+      $ak = ProductKey::getByHandle($ak);
+    }
+    $ak->setAttribute($this, $value);
+  }
+
+  public function getProductID() {
+    return $this->pID;
+  }
+
+  public function getAttribute( $ak, $displayMode = false ) {
+    if ( !is_object( $ak )) {
+      $ak = ProductKey::getByHandle( $ak );
+    }
+    if ( is_object( $ak )) {
+      $av = $this->getAttributeValueObject( $ak );
+      if ( is_object( $av )) {
+        return $av->getValue( $displayMode );
+      }
+    }
+  }
+
+  public function getAttributeValueObject($ak, $createIfNotFound = false) {
+    $db = Database::get();
+    $av = false;
+    $v = array( $this->getProductID(), $ak->getAttributeKeyID() );
+    $avID = $db->GetOne("select avID from RazorProductAttributeValues where pID = ? and akID = ?", $v);
+    if ($avID > 0) {
+      $av = ProductValue::getByID($avID);
+      if (is_object($av)) {
+        $av->setProduct($this);
+        $av->setAttributeKey($ak);
+      }
+    }
+
+    if ( $createIfNotFound ) {
+      $cnt = 0;
+      if ( is_object($av)) {
+        $cnt = $db->GetOne("select count(avID) from RazorProductAttributeValues where avID = ?", $av->getAttributeValueID());
+      }
+
+      if ((!is_object($av)) || ($cnt > 1)) {
+        $av = $ak->addAttributeValue();
+      }
+    }
+
+    return $av;
+  }
+
+
 
   public static function getByPath( $productPath ) {
     $product = new Product();

@@ -34,6 +34,7 @@ class Controller extends Package {
   protected $pkgAutoloaderRegistries = array(
     'src' => '\Razor\Core',
   );
+
   public $pkg;
 
   /**
