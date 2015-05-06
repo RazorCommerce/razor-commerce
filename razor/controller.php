@@ -31,7 +31,9 @@ class Controller extends Package {
   protected $pkgHandle = 'razor';
   protected $appVersionRequired = '5.7.3.9';
   protected $pkgVersion = '0.9.2.1';
-  protected $pkgAutoloaderRegistries = array( 'src' => '\Razor\Core' );
+  protected $pkgAutoloaderRegistries = array(
+    'src' => '\Razor\Core',
+  );
   public $pkg;
 
   /**

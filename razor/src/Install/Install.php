@@ -31,9 +31,9 @@ class Install {
   public function installAttributeKeys( $pkg ) {
 
     //create custom attribute category for products
-    $cpAKC = AttributeKeyCategory::getByHandle('commerce_product');
-    if (!is_object($cpAKC)) {
-      $cpAKC = AttributeKeyCategory::add( 'commerce_product', AttributeKeyCategory::ASET_ALLOW_SINGLE, $pkg );
+    $cpAKC = AttributeKeyCategory::getByHandle('product');
+    if ( !is_object($cpAKC) ) {
+      $cpAKC = AttributeKeyCategory::add( 'product', AttributeKeyCategory::ASET_ALLOW_SINGLE, $pkg );
       $cpAKC->associateAttributeKeyType( AttributeType::getByHandle('text') );
       $cpAKC->associateAttributeKeyType( AttributeType::getByHandle('textarea') );
       $cpAKC->associateAttributeKeyType( AttributeType::getByHandle('number') );

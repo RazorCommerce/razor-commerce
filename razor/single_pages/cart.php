@@ -1,5 +1,7 @@
 <?php
+
 defined('C5_EXECUTE') or die("Access Denied.");
+
 $args = array(
   'cart' => $cart,
   'checkout_url' => $this->url('/checkout'),
