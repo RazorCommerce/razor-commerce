@@ -11,14 +11,32 @@
   </table>
   <table name="RazorProductAttributeKeys">
     <field name="akID" type="I"><key/><unsigned/></field>
-    <field name="pakProductOption" type="I1" size="1"></field>
-    <field name="pakProductOptionValues" type="X2"></field>
-    <field name="pakProductOptionDefault" type="C" size="255"></field>
   </table>
   <table name="RazorProductAttributeValues">
     <field name="pID" type="I"><key/><unsigned/></field>
     <field name="akID" type="I"><key/><unsigned/></field>
     <field name="avID" type="I"><key/><unsigned/></field>
+  </table>
+  <table name="RazorProductProductOptions">
+    <field name="pID" type="I"><key/><unsigned/></field>
+    <field name="poID" type="I"><key/><unsigned/></field>
+    <field name="poValues" type="B"></field>
+    <field name="poValueDefault" type="C" size="255"></field>
+    <field name="poRenderDefault" type="C" size="64"></field>
+  </table>
+  <table name="RazorProductOptions">
+    <field name="poID" type="I"><key/><unsigned/><autoincrement/></field>
+    <field name="poHandle" type="C" size="128"></field>
+    <field name="poType" type="C" size="64"></field>
+    <field name="poName" type="C" size="255"></field>
+    <field name="poRenderDefault" type="C" size="64"></field>
+  </table>
+  <table name="RazorProductOptionValues">
+    <field name="povID" type="I"><key/><unsigned/><autoincrement/></field>
+    <field name="poID" type="I"><key/><unsigned/></field>
+    <field name="povKey" type="C" size="255"></field>
+    <field name="povValue" type="C" size="255"></field>
+    <field name="povIsDefault" type="I1" size="1"></field>
   </table>
   <table name="RazorOrders">
     <field name="orderID" type="I" size="10">
@@ -54,30 +72,39 @@
     </field>
   </table>
   <table name="RazorOrderItems">
-  <field name="orderItemID" type="I" size="10">
-    <key/>
-    <autoincrement/>
-    <unsigned/>
-  </field>
-   <field name="orderID" type="I" size="10">
+    <field name="orderItemID" type="I" size="10">
+      <key/>
+      <autoincrement/>
+      <unsigned/>
+    </field>
+    <field name="orderID" type="I" size="10">
      <key/>
      <default value="0"/>
      <unsigned/>
-   </field>
-   <field name="productID" type="I" size="10">
+    </field>
+    <field name="productID" type="I" size="10">
      <key/>
      <default value="0"/>
      <unsigned/>
-   </field>
-   <field name="quantity" type="N" size="14.4">
+    </field>
+    <field name="quantity" type="N" size="14.4">
      <default value="0.0000"/>
-   </field>
-   <field name="priceEach" type="N" size="14.4">
+    </field>
+    <field name="priceEach" type="N" size="14.4">
      <default value="0.0000"/>
-   </field>
-   <field name="priceTotal" type="N" size="14.4">
+    </field>
+    <field name="priceTotal" type="N" size="14.4">
      <default value="0.0000"/>
-   </field>
+    </field>
+  </table>
+  <table name="RazorOrderItemOptions">
+    <field name="ooID" type="I" size="10">
+      <key/>
+      <autoincrement/>
+      <unsigned/>
+    </field>
+    <field name="poID" type="I" size="10"></field>
+    <field name="poValue" type="C" size="255"></field>
   </table>
   <table name="RazorPayments">
      <field name="paymentID" type="I" size="10">
