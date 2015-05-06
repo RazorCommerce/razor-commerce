@@ -87,15 +87,25 @@ class ProductKey extends AttributeKey {
   public static function add($type, $args, $pkg = false) {
     $ak = parent::add('product', $type, $args, $pkg);
 
+    $pakProductOption = 0;
     if( isset( $args['pakProductOption'] )) {
       $pakProductOption = $args['pakProductOption'];
-    } else {
-      $pakProductOption = false;
     }
 
-    $v = array( $ak->getAttributeKeyID(), $pakProductOption );
+    $pakProductOptionValues = '';
+    if( isset( $args['pakProductOptionValues'] )) {
+      $pakProductOptionValues = $args['pakProductOptionValues'];
+    }
+
+    $pakProductOptionDefault = '';
+    if( isset( $args['pakProductOptionDefault'] )) {
+      $pakProductOptionDefault = $args['pakProductOptionDefault'];
+    }
+
+    $v = array( $ak->getAttributeKeyID(), $pakProductOption, $pakProductOptionValues, $pakProductOptionDefault );
     $db = Database::get();
-    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID) VALUES (?, ?)', $v);
+    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID, pakProductOption, pakProductOptionValues, pakProductOptionDefault)
+      VALUES (?, ?, ?, ?)', $v);
 
     $nak = new ProductKey();
     $nak->load($ak->getAttributeKeyID());
@@ -104,10 +114,26 @@ class ProductKey extends AttributeKey {
 
   public function update($args) {
     $ak = parent::update($args);
-    extract($args);
-    $v = array($ak->getAttributeKeyID());
+
+    $pakProductOption = 0;
+    if( isset( $args['pakProductOption'] )) {
+      $pakProductOption = $args['pakProductOption'];
+    }
+
+    $pakProductOptionValues = '';
+    if( isset( $args['pakProductOptionValues'] )) {
+      $pakProductOption = $args['pakProductOptionValues'];
+    }
+
+    $pakProductOptionDefault = '';
+    if( isset( $args['pakProductOptionDefault'] )) {
+      $pakProductOption = $args['pakProductOptionDefault'];
+    }
+
+    $v = array( $ak->getAttributeKeyID(), $pakProductOption, $pakProductOptionValues, $pakProductOptionDefault );
     $db = Database::get();
-    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID) VALUES (?)', $v);
+    $db->Execute('REPLACE INTO RazorProductAttributeKeys (akID, pakProductOption, pakProductOptionValues, pakProductOptionDefault)
+      VALUES (?, ?, ?, ?)', $v);
   }
 
   public function delete() {
