@@ -24,6 +24,15 @@ class Customer {
     return $customer;
   }
 
+  public static function add( $data ) {
+    $userData['uName'] = $data['email'];
+    $userData['uEmail'] = $data['email'];
+    $userData['uPassword'] = '123456';
+    $userData['uPasswordConfirm'] = '123456';
+    $ui = UserInfo::register( $userData );
+    return $ui;
+  }
+
   public function getCustomerID() {
     return $this->id;
   }

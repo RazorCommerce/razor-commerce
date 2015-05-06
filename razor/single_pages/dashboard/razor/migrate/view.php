@@ -21,6 +21,10 @@
         <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/catalog'); ?>">Run</a></td>
       </tr>
       <tr>
+        <td>Customer Import</td>
+        <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/customer_import'); ?>">Run</a></td>
+      </tr>
+      <tr>
         <td>File Import</td>
         <td><a class="btn btn-primary" href="<?php print $this->url('dashboard/razor/migrate/import/file'); ?>">Run</a></td>
       </tr>

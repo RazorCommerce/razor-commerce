@@ -34,7 +34,7 @@ class Import extends DashboardPageController {
         } else {
           $file_contents = $file_version->getFileContents();
           $this->xml = simplexml_load_string( $file_contents );
-          if( $object == 'tax_import' || $object == 'setting_import' ) {
+          if( $object == 'tax_import' || $object == 'setting_import' || $object == 'customer_import' ) {
             $migrate->setType( $object );
             $migrate->setXML( $this->xml );
             $migrate->test();
@@ -62,7 +62,7 @@ class Import extends DashboardPageController {
       } else {
         $file_contents = $file_version->getFileContents();
         $this->xml = simplexml_load_string( $file_contents );
-        if( $object == 'tax_import' || $object == 'setting_import' ) {
+        if( $object == 'tax_import' || $object == 'setting_import' || $object == 'customer_import' ) {
           $migrate->setType( $object );
           $migrate->setXML( $this->xml );
           $migrate->execute();
