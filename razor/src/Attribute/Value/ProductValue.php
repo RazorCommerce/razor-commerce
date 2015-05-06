@@ -1,5 +1,6 @@
 <?php
-namespace Razor\Core\Attribute\Value;
+
+namespace Concrete\Package\Razor\Src\Attribute\Value;
 
 use Database;
 use \Concrete\Core\Attribute\Value\Value as AttributeValue;

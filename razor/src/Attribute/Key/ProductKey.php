@@ -1,6 +1,6 @@
 <?php
 
-namespace Razor\Core\Attribute\Key;
+namespace Concrete\Package\Razor\Src\Attribute\Key;
 
 use \Concrete\Core\Attribute\Type as AttributeType;
 use Database;
