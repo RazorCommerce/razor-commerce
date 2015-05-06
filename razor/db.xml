@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <schema version="0.3">
- <table name="RazorOrders">
+  <table name="RazorProduct">
+		<field name="pID" type="I"><key /><unsigned /><autoincrement/></field>
+    <field name="pType" type="C" size="255"></field>
+    <field name="pName" type="C" size="255"></field>
+    <field name="sku" type="C" size="255"></field>
+    <field name="shippable" type="I"></field>
+    <field name="dateAdded" type="T"></field>
+    <field name="status" type="C" size="255"></field>
+  </table>
+  <table name="RazorOrders">
     <field name="orderID" type="I" size="10">
       <key/>
       <autoincrement/>
@@ -34,74 +43,74 @@
     </field>
   </table>
   <table name="RazorOrderItems">
-    <field name="orderItemID" type="I" size="10">
+  <field name="orderItemID" type="I" size="10">
+    <key/>
+    <autoincrement/>
+    <unsigned/>
+  </field>
+   <field name="orderID" type="I" size="10">
+     <key/>
+     <default value="0"/>
+     <unsigned/>
+   </field>
+   <field name="productID" type="I" size="10">
+     <key/>
+     <default value="0"/>
+     <unsigned/>
+   </field>
+   <field name="quantity" type="N" size="14.4">
+     <default value="0.0000"/>
+   </field>
+   <field name="priceEach" type="N" size="14.4">
+     <default value="0.0000"/>
+   </field>
+   <field name="priceTotal" type="N" size="14.4">
+     <default value="0.0000"/>
+   </field>
+  </table>
+  <table name="RazorPayments">
+     <field name="paymentID" type="I" size="10">
+       <key/>
+       <autoincrement/>
+       <unsigned/>
+     </field>
+    <field name="orderID" type="I" size="10">
+      <key/>
+      <default value="0"/>
+      <unsigned/>
+    </field>
+    <field name="amount" type="N" size="14.4">
+      <default value="0.0000"/>
+    </field>
+    <field name="paymentDate" type="TS">
+      <notnull/>
+      <default value="0000-00-00 00:00:00"/>
+    </field>
+    <field name="type" type="C" size="255">
+      <notnull/>
+    </field>
+    <field name="typeReference" type="B" size="32">
+      <notnull/>
+      <unsigned/>
+    </field>
+  </table>
+  <table name="RazorTax">
+    <field name="taxID" type="I" size="10">
       <key/>
       <autoincrement/>
       <unsigned/>
     </field>
-     <field name="orderID" type="I" size="10">
-       <key/>
-       <default value="0"/>
-       <unsigned/>
-     </field>
-     <field name="productID" type="I" size="10">
-       <key/>
-       <default value="0"/>
-       <unsigned/>
-     </field>
-     <field name="quantity" type="N" size="14.4">
-       <default value="0.0000"/>
-     </field>
-     <field name="priceEach" type="N" size="14.4">
-       <default value="0.0000"/>
-     </field>
-     <field name="priceTotal" type="N" size="14.4">
-       <default value="0.0000"/>
-     </field>
-   </table>
-   <table name="RazorPayments">
-       <field name="paymentID" type="I" size="10">
-         <key/>
-         <autoincrement/>
-         <unsigned/>
-       </field>
-      <field name="orderID" type="I" size="10">
-        <key/>
-        <default value="0"/>
-        <unsigned/>
-      </field>
-      <field name="amount" type="N" size="14.4">
-        <default value="0.0000"/>
-      </field>
-      <field name="paymentDate" type="TS">
-        <notnull/>
-        <default value="0000-00-00 00:00:00"/>
-      </field>
-      <field name="type" type="C" size="255">
-        <notnull/>
-      </field>
-      <field name="typeReference" type="B" size="32">
-        <notnull/>
-        <unsigned/>
-      </field>
-    </table>
-    <table name="RazorTax">
-      <field name="taxID" type="I" size="10">
-        <key/>
-        <autoincrement/>
-        <unsigned/>
-      </field>
-      <field name="name" type="C" size="255">
-        <notnull/>
-      </field>
-      <field name="country" type="C" size="255">
-        <notnull/>
-      </field>
-      <field name="region" type="C" size="255">
-        <notnull/>
-      </field>
-      <field name="rate" type="N" size="4.2">
-        <default value="0.00"/>
-      </field>
-    </table>
+    <field name="name" type="C" size="255">
+      <notnull/>
+    </field>
+    <field name="country" type="C" size="255">
+      <notnull/>
+    </field>
+    <field name="region" type="C" size="255">
+      <notnull/>
+    </field>
+    <field name="rate" type="N" size="4.2">
+      <default value="0.00"/>
+    </field>
+  </table>
 </schema>

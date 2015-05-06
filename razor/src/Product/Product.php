@@ -6,6 +6,7 @@ use Concrete\Core\Foundation\Object;
 use Razor\Core\Extension\Extension;
 use Razor\Core\Product\Page as ProductPage;
 use Loader;
+use Database;
 
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
