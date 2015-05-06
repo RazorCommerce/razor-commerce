@@ -402,7 +402,7 @@ class ApiRequestor
 
         $url = parse_url($url);
         $port = isset($url["port"]) ? $url["port"] : 443;
-        $url = "ssl://{$url["host"]}:{$port}";
+        $url = "ssl://{$url['host']}:{$port}";
 
         $sslContext = stream_context_create(
             array('ssl' => array(
