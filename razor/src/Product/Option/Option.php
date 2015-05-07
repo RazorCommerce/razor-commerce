@@ -16,6 +16,14 @@ class Option extends Object {
     return $this->poID;
   }
 
+  public function getByHandle( $poHandle ) {
+    $db = Database::get();
+    $data = $db->GetRow('select * from RazorProductOptions where poHandle = ?', $poHandle);
+    $option = new Option();
+    $option->setPropertiesFromArray( $data );
+    return $option;
+  }
+
   public function getByID( $poID ) {
     $db = Database::get();
     $data = $db->GetRow('select * from RazorProductOptions where poID = ?', $poID);
@@ -52,7 +60,13 @@ class Option extends Object {
     return $values;
   }
 
+  public function getValueDefault() {
+    return $this->poValueDefault;
+  }
 
+  public function getRenderDefault() {
+    return $this->poRenderDefault;
+  }
 
   // list of options for given product
   public function getByProduct( $product ) {
@@ -84,18 +98,6 @@ class Option extends Object {
 
   public function getDefault() {
     return $this->default;
-  }
-
-  public function render() {
-    $output = '';
-    $output .= '<select name="product-option-' . $this->akID . '">';
-    foreach( $this->values as $value ) {
-      $output .= '<option value="' . $value . '">';
-      $output .= $value;
-      $output .= '</option>';
-    }
-    $output .= '</select>';
-    return $output;
   }
 
 }

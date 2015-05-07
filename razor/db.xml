@@ -29,6 +29,7 @@
     <field name="poHandle" type="C" size="128"></field>
     <field name="poType" type="C" size="64"></field>
     <field name="poName" type="C" size="255"></field>
+    <field name="poValueDefault" type="C" size="255"></field>
     <field name="poRenderDefault" type="C" size="64"></field>
   </table>
   <table name="RazorProductOptionValues">
