@@ -22,6 +22,11 @@ class Product extends Object {
     return $product;
   }
 
+  public function option() {
+    $ppo = new \Razor\Core\Product\ProductOption( $this );
+    return $ppo;
+  }
+
   /*
    * Attribute Handling Methods
    */
