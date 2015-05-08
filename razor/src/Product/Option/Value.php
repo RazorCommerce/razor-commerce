@@ -26,6 +26,10 @@ class Value extends Object {
     return $value;
   }
 
+  public function getValue() {
+    return $this->povValue;
+  }
+
   public function add( $value, $isDefault = false, $key = false ) {
     $db = Database::get();
     if( !$key ) {

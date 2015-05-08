@@ -32,6 +32,18 @@ class Option extends Object {
     return $option;
   }
 
+  public function getAll() {
+    $db = Database::get();
+    $r = $db->Execute('select poID from RazorProductOptions');
+    $options = array();
+    while ($row = $r->FetchRow()) {
+      $po = new Option;
+      $po = $po->getByID( $row['poID'] );
+      $options[] = $po;
+    }
+    return $options;
+  }
+
   public static function add( $data ) {
     $db = Database::get();
     $db->query("insert into RazorProductOptions (poHandle, poType, poName, poRenderDefault) values (?, ?, ?, ?)",
@@ -60,6 +72,16 @@ class Option extends Object {
     return $values;
   }
 
+  public function getValuesAsList() {
+    $values = $this->getValues();
+    $valueList = '';
+    foreach( $values as $value ) {
+      $valueList .= $value->getValue() . ', ';
+    }
+    $valueList = substr( $valueList, 0, -2 );
+    return $valueList;
+  }
+
   public function getValueDefault() {
     return $this->poValueDefault;
   }
@@ -68,36 +90,14 @@ class Option extends Object {
     return $this->poRenderDefault;
   }
 
-  // list of options for given product
-  public function getByProduct( $product ) {
-    $db = Database::get();
-    $r = $db->Execute('select * from RazorProductOptions po
-      left join RazorProductAttributeKeys ak on av.akID = ak.akID
-      where av.pID = ? and ak.pakProductOption = 1
-      ', array( $product->getProductID() ));
-    $options = array();
-    while ($row = $r->FetchRow()) {
-      $option = new Option();
-      $option->setPropertiesFromArray( $row );
-      $option->parseListValues();
-      $option->default = $option->pakProductOptionDefault;
-      $options[] = $option;
-    }
-    return $options;
-  }
-
-  public function getByAKID( $akID ) {
-
-  }
-
   public function parseListValues() {
     $values = str_replace( ' ', '', $this->pakProductOptionValues);
     $values = explode(',', $values);
     $this->values = $values;
   }
 
-  public function getDefault() {
-    return $this->default;
+  public function getOptionName() {
+    return $this->poName;
   }
 
 }

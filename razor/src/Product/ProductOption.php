@@ -17,6 +17,13 @@ class ProductOption extends Object {
     $this->product = $product;
   }
 
+  public function hasOption( $productOption ) {
+    if( $this->get( $productOption )) {
+      return true;
+    }
+    return false;
+  }
+
   public function add( $productOption ) {
 
     $ppo = new ProductOption( $this->product );
@@ -88,6 +95,10 @@ class ProductOption extends Object {
     if( !$this->poRenderDefault ) {
       $this->poRenderDefault = $this->productOption->getRenderDefault();
     }
+  }
+
+  public function getOptionName() {
+    return $this->productOption->getOptionName();
   }
 
 }
