@@ -45,6 +45,7 @@ class Controller extends Package {
     '/checkout',
     '/dashboard/razor',
     '/dashboard/razor/products',
+    '/dashboard/razor/product/option',
     '/dashboard/razor/customers',
     '/dashboard/razor/migrate',
     '/dashboard/razor/migrate/import',
