@@ -43,6 +43,16 @@ class Option extends DashboardPageController {
     // get data
     $editOption = ProductOption::getByID( $optionID );
     $this->set('editOption', $editOption);
+    $this->set('mode', 'add');
+
+  }
+
+
+  public function edit( $productID, $optionID ) {
+
+    $editOption = ProductOption::getByID( $optionID );
+    $this->set('editOption', $editOption);
+    $this->set('mode', 'edit');
 
   }
 
@@ -69,14 +79,20 @@ class Option extends DashboardPageController {
         foreach( $values as $value ) {
           $productOption->value()->add( $value );
         }
-
-
       } else {
         $productOption = ProductOption::getByID( $poID );
       }
 
-      $product = Product::getByID(1);
-      $productProductOption = $product->option()->add( $productOption );
+      if( $mode == 'add' ) {
+        $product = Product::getByID(1);
+        $productProductOption = $product->option()->add( $productOption );
+      } else {
+        $product = Product::getByID(1);
+        $productProductOption = $product->option()->get( $productOption );
+
+      }
+
+
 
       // $handle = uncamelcase( $data['name'] );
 
@@ -89,11 +105,6 @@ class Option extends DashboardPageController {
     }
 
     // $this->redirect( '/dashboard/product/option/edit/1/' . $poID );
-  }
-
-
-  public function edit( $productID, $optionHandle ) {
-
   }
 
 }

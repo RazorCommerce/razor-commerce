@@ -43,6 +43,10 @@ class ProductOption extends Object {
 
   }
 
+  public function update() {
+    
+  }
+
   public function getAll() {
     $db = Database::get();
     $r = $db->Execute('select poID from RazorProductProductOptions where pID = ?', array( $this->product->getProductID() ));

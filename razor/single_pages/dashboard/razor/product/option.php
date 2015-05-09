@@ -41,6 +41,7 @@ $form = Core::make('helper/form');
   <form action="<?php print $this->url('/dashboard/razor/product/option/save'); ?>" method="post">
 
     <?php print $form->hidden( 'poID', $editOption->getProductOptionID() ); ?>
+    <?php print $form->hidden( 'mode', $mode ); ?>
 
     <div class="row"
       <div class="col-md-6">
