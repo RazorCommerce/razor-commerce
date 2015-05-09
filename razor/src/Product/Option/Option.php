@@ -46,8 +46,8 @@ class Option extends Object {
 
   public static function add( $data ) {
     $db = Database::get();
-    $db->query("insert into RazorProductOptions (poHandle, poType, poName, poRenderDefault) values (?, ?, ?, ?)",
-      array( $data['poHandle'], $data['poType'], $data['poName'], $data['poRenderDefault'] )
+    $db->query("insert into RazorProductOptions (poHandle, poName, poType, poValueDefault, poRenderDefault) values (?, ?, ?, ?, ?)",
+      array( $data['poHandle'], $data['poName'], $data['poType'], $data['poValueDefault'], $data['poRenderDefault'] )
     );
     $poID = $db->Insert_ID();
     $option = new Option();

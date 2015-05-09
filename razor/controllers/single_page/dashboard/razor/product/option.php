@@ -51,10 +51,33 @@ class Option extends DashboardPageController {
 
     if( isset($data['save_settings'])) {
 
+      $poID = $data['poID'];
+
+      // add existing ProductOption to Product
+      if( !$poID ) {
+        $poData = array(
+          'poHandle' => uncamelcase( $data['name'] ),
+          'poName' => $data['name'],
+          'poType' => 'select',
+          'poValueDefault' => $data['default']
+        );
+        $productOption = ProductOption::add( $poData );
+
+        $values = $data['values'];
+        $values = str_replace(' ', '', $values);
+        $values = explode( ',', $values );
+        foreach( $values as $value ) {
+          $productOption->value()->add( $value );
+        }
+
+
+      } else {
+        $productOption = ProductOption::getByID( $poID );
+      }
+
       $product = Product::getByID(1);
-      $productOption = ProductOption::getByID( $data['poID'] );
       $productProductOption = $product->option()->add( $productOption );
-      
+
       // $handle = uncamelcase( $data['name'] );
 
       var_dump('<br /><br /><br /><br />');
