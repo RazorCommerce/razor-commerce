@@ -2,7 +2,6 @@
 namespace Concrete\Package\Razor\Controller\SinglePage\Dashboard\Razor;
 use \Concrete\Core\Page\Controller\DashboardPageController;
 use \Concrete\Core\Page\PageList;
-use Razor\Core\Product\ProductList;
 use Razor\Core\Product\Product;
 use Razor\Core\Product\Type\Type as ProductType;
 
