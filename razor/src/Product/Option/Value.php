@@ -18,6 +18,10 @@ class Value extends Object {
     $this->poID = $poID;
   }
 
+  public function getPOID() {
+    return $this->poID;
+  }
+
   public static function getByID( $povID ) {
     $db = Database::get();
     $data = $db->GetRow('select * from RazorProductOptionValues where povID = ?', $povID);
@@ -39,18 +43,24 @@ class Value extends Object {
     return $this->povValue;
   }
 
+  public function getKey() {
+    return $this->povKey;
+  }
+
+  public function makeKey( $value ) {
+    $th = \Core::make('helper/text');
+    return $th->handle( $value );
+  }
+
   public function add( $value, $isDefault = false, $key = false ) {
     $db = Database::get();
     if( !$key ) {
-      $th = \Core::make('helper/text');
-      $key = $th->handle( $value );
+      $key = $this->makeKey( $value );
     }
-
-    $existing = $this->getByKey( $key );
-    if( $existing ) {
+    $existing = $this->getByKey( $key )->getPOID();
+    if( isset( $existing )) {
       return false;
     }
-
     $db->query("insert into RazorProductOptionValues (poID, povKey, povValue, povIsDefault) values (?, ?, ?, ?)",
       array( $this->poID, $key, $value, $isDefault )
     );

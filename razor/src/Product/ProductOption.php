@@ -111,10 +111,36 @@ class ProductOption extends Object {
       array( $this->product->getProductID(), $productOption->getProductOptionID() ));
   }
 
-  public function updateDefault( $defaultValue ) {
+  public function updateValues( $valueKeys ) {
+    $db = Database::get();
+    $values = implode ( ",", $valueKeys );
+    $r = $db->Execute('update RazorProductProductOptions set poValues = ? where pID = ? and poID = ?',
+      array( $values, $this->product->getProductID(), $this->productOption->getProductOptionID() ));
+  }
+
+  public function updateDefaultValue( $defaultValue ) {
     $db = Database::get();
     $r = $db->Execute('update RazorProductProductOptions set poValueDefault = ? where pID = ? and poID = ?',
       array( $defaultValue, $this->product->getProductID(), $this->productOption->getProductOptionID() ));
+  }
+
+  public function getValuesAsList() {
+    if( isset( $this->poValues )) {
+      $valueKeys = explode( ',', $this->poValues );
+      $valueList = array();
+      foreach( $valueKeys as $valueKey ) {
+        $valueList[] = $this->productOption->value()->getByKey( $valueKey )->getValue();
+      }
+      return implode( ', ', $valueList );
+    }
+    return $this->productOption->getValuesAsList();
+  }
+
+  public function getValueDefault() {
+    if( isset( $this->poValueDefault )) {
+      return $this->poValueDefault;
+    }
+    return $this->productOption->getValueDefault();
   }
 
 }

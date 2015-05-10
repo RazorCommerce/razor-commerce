@@ -22,8 +22,10 @@ class Option extends DashboardPageController {
 
   public function edit( $pID, $optionID ) {
     $this->setProductOptions( $pID );
-    $editOption = ProductOption::getByID( $optionID );
-    $this->set('editOption', $editOption);
+    $product = Product::getByID( $pID );
+    $productOption = ProductOption::getByID( $optionID );
+    $productProductOption = $product->option()->get( $productOption );
+    $this->set('editOption', $productProductOption);
     $this->set('mode', 'edit');
   }
 
@@ -39,11 +41,14 @@ class Option extends DashboardPageController {
     $values = $data['values'];
     $values = str_replace(' ', '', $values);
     $values = explode( ',', $values );
+    $valueKeys = array();
     foreach( $values as $value ) {
       $productOption->value()->add( $value );
+      $valueKeys[] = $productOption->value()->makeKey( $value );
     }
-    $productProductOption->updateDefault( $data['default'] );
-     $this->redirect( '/dashboard/razor/product/option/edit/' . $product->getProductID() . '/' . $productOption->getProductOptionID() );
+    $productProductOption->updateValues( $valueKeys );
+    $productProductOption->updateDefaultValue( $data['default'] );
+    $this->redirect( '/dashboard/razor/product/option/edit/' . $product->getProductID() . '/' . $productOption->getProductOptionID() );
   }
 
   public function save() {
