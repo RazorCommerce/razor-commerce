@@ -56,6 +56,14 @@ class Option extends DashboardPageController {
 
   }
 
+  public function remove( $productID, $productOptionID ) {
+
+    $product = Product::getByID( $productID );
+    $productOption = ProductOption::getByID( $productOptionID ); 
+    $product->option()->remove( $productOption );
+
+  }
+
   public function save() {
     $data = $this->post();
 

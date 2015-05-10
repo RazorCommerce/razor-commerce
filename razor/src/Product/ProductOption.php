@@ -44,7 +44,7 @@ class ProductOption extends Object {
   }
 
   public function update() {
-    
+
   }
 
   public function getAll() {
@@ -103,6 +103,12 @@ class ProductOption extends Object {
 
   public function getOptionName() {
     return $this->productOption->getOptionName();
+  }
+
+  public function remove( $productOption ) {
+    $db = Database::get();
+    $db->Execute('delete from RazorProductProductOptions where pID = ? and poID = ?',
+      array( $this->product->getProductID(), $productOption->getProductOptionID() ));
   }
 
 }
