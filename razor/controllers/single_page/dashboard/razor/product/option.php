@@ -8,53 +8,50 @@ use Razor\Core\Product\ProductOption as ProductProductOption;
 
 class Option extends DashboardPageController {
 
-  public function view( $productID ) {
-    $product = Product::getByID( $productID );
-    $option = new ProductOption;
-    $allOptions = $option->getAll();
-    if( $product ) {
-      $currentOptions = $product->option()->getAll();
-      $this->set('currentOptions', $currentOptions);
-      foreach( $allOptions as $option ) {
-        $ppo = new ProductProductOption( $product );
-        $option->assigned = false;
-        if( $ppo->hasOption( $option )) {
-          $option->assigned = true;
-        }
-      }
-    } else {
-      $this->set('currentOptions', false);
-    }
-    $this->set('allOptions', $allOptions);
+  public function view( $pID ) {
+    $this->setProductOptions( $pID );
   }
 
-  public function add( $productID, $optionID = false ) {
+  public function add( $pID, $optionID = false ) {
+    $this->setProductOptions( $pID );
     $editOption = ProductOption::getByID( $optionID );
     $this->set('editOption', $editOption);
     $this->set('mode', 'add');
   }
 
 
-  public function edit( $productID, $optionID ) {
+  public function edit( $pID, $optionID ) {
+    $this->setProductOptions( $pID );
     $editOption = ProductOption::getByID( $optionID );
     $this->set('editOption', $editOption);
     $this->set('mode', 'edit');
   }
 
-  public function remove( $productID, $productOptionID ) {
-    $product = Product::getByID( $productID );
+  public function remove( $pID, $productOptionID ) {
+    $this->setProductOptions( $pID );
+    $product = Product::getByID( $pID );
     $productOption = ProductOption::getByID( $productOptionID );
     $product->option()->remove( $productOption );
   }
 
+  private function saveEdit( $product, $productOption, $data ) {
+    $productProductOption = $product->option()->get( $productOption );
+    $values = $data['values'];
+    $values = str_replace(' ', '', $values);
+    $values = explode( ',', $values );
+    foreach( $values as $value ) {
+      $productOption->value()->add( $value );
+    }
+    $productProductOption->updateDefault( $data['default'] );
+     $this->redirect( '/dashboard/razor/product/option/edit/' . $product->getProductID() . '/' . $productOption->getProductOptionID() );
+  }
+
   public function save() {
     $data = $this->post();
-    if( !isset($data['save_settings'])) {
-      $this->redirect( '/dashboard/product/option/' );
-    }
-
-    $productID = $data['productID'];
+    $pID = $data['pID'];
     $poID = $data['poID'];
+    $mode = $data['mode'];
+    $product = Product::getByID( $pID );
 
     // add new ProductOption
     if( !$poID ) {
@@ -75,19 +72,36 @@ class Option extends DashboardPageController {
     } else {
       $productOption = ProductOption::getByID( $poID );
     }
+
     if( $mode == 'add' ) {
-      $product = Product::getByID( $productID );
+      $product = Product::getByID( $pID );
       $productProductOption = $product->option()->add( $productOption );
     } else {
-      $product = Product::getByID( $productID );
-      $productProductOption = $product->option()->get( $productOption );
-      $values = $data['values'];
-      $values = str_replace(' ', '', $values);
-      $values = explode( ',', $values );
-      foreach( $values as $value ) {
-        $productOption->value()->add( $value );
-      }
+      $this->saveEdit( $product, $productOption, $data );
     }
+
+    $this->redirect( '/dashboard/razor/product/option/' . $pID );
+  }
+
+  private function setProductOptions( $pID ) {
+    $product = Product::getByID( $pID );
+    $this->set('pID', $pID);
+    $option = new ProductOption;
+    $allOptions = $option->getAll();
+    if( $product ) {
+      $currentOptions = $product->option()->getAll();
+      $this->set('currentOptions', $currentOptions);
+      foreach( $allOptions as $option ) {
+        $ppo = new ProductProductOption( $product );
+        $option->assigned = false;
+        if( $ppo->hasOption( $option )) {
+          $option->assigned = true;
+        }
+      }
+    } else {
+      $this->set('currentOptions', false);
+    }
+    $this->set('allOptions', $allOptions);
   }
 
 }

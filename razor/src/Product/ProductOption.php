@@ -111,4 +111,10 @@ class ProductOption extends Object {
       array( $this->product->getProductID(), $productOption->getProductOptionID() ));
   }
 
+  public function updateDefault( $defaultValue ) {
+    $db = Database::get();
+    $r = $db->Execute('update RazorProductProductOptions set poValueDefault = ? where pID = ? and poID = ?',
+      array( $defaultValue, $this->product->getProductID(), $this->productOption->getProductOptionID() ));
+  }
+
 }

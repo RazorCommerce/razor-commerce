@@ -4,75 +4,73 @@ $form = Core::make('helper/form');
 
 ?>
 
-  <div class="row">
-    <div class="col-md-4">
+<div class="row">
 
-      <a href="<?php print $this->url('dashboard/razor/product/option/add/') . '/1/'; ?>" class="btn btn-success">Add New Product Option</a>
+  <div class="col-md-4">
 
-      <h3>Existing Product Options</h3>
+    <a href="<?php print $this->url('dashboard/razor/product/option/add/' . $pID ); ?>" class="btn btn-success">Add New Product Option</a>
 
-      <table class="table striped">
+    <h3>Existing Product Options</h3>
 
-        <?php if( count($allOptions) ) :
-          foreach( $allOptions as $option ):
-        ?>
-          <tr>
-            <td>
-              <?php print $option->getOptionName(); ?>
-            </td>
-            <td>
-              <?php if( $option->assigned ) { ?>
-                <a href="<?php print $this->url('dashboard/razor/product/option/edit/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Edit</a>
-                <a href="<?php print $this->url('dashboard/razor/product/option/remove/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Remove</a>
-              <?php } else { ?>
-                <a href="<?php print $this->url('dashboard/razor/product/option/add/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Add</a>
-              <?php } ?>
-            </td>
-          </tr>
-        <?php endforeach; endif; ?>
+    <table class="table striped">
 
-      </table>
+      <?php if( count($allOptions) ) :
+        foreach( $allOptions as $option ):
+      ?>
+        <tr>
+          <td>
+            <?php print $option->getOptionName(); ?>
+          </td>
+          <td>
+            <?php if( $option->assigned ) { ?>
+              <a href="<?php print $this->url('dashboard/razor/product/option/edit/' . $pID ) . '/' . $option->getProductOptionID(); ?>" class="btn btn-default">Edit</a>
+              <a href="<?php print $this->url('dashboard/razor/product/option/remove/' . $pID ) . '/' . $option->getProductOptionID(); ?>" class="btn btn-default">Remove</a>
+            <?php } else { ?>
+              <a href="<?php print $this->url('dashboard/razor/product/option/add/' . $pID ) . '/' . $option->getProductOptionID(); ?>" class="btn btn-default">Add</a>
+            <?php } ?>
+          </td>
+        </tr>
+      <?php endforeach; endif; ?>
 
-    </div>
+    </table>
 
   </div>
 
-<?php if( $editOption ): ?>
+  <div class="col-md-8">
+    <?php if( $editOption ): ?>
 
-  <form action="<?php print $this->url('/dashboard/razor/product/option/save'); ?>" method="post">
+      <form action="<?php print $this->url('/dashboard/razor/product/option/save'); ?>" method="post">
 
-    <?php print $form->hidden( 'poID', $editOption->getProductOptionID() ); ?>
-    <?php print $form->hidden( 'mode', $mode ); ?>
+        <?php print $form->hidden( 'pID', $pID ); ?>
+        <?php print $form->hidden( 'poID', $editOption->getProductOptionID() ); ?>
+        <?php print $form->hidden( 'mode', $mode ); ?>
 
-    <div class="row"
-      <div class="col-md-6">
-
-          <h2>Configure Product Option</h2>
-
-          <div class="form-group">
-            <?php print $form->label( 'name', 'Name' ); ?>
-            <?php print $form->text( 'name', $editOption->getOptionName() ); ?>
+              <h2>Configure Product Option</h2>
+              <div class="form-group">
+                <?php print $form->label( 'name', 'Name' ); ?>
+                <?php print $form->text( 'name', $editOption->getOptionName() ); ?>
+              </div>
+              <div class="form-group">
+                <?php print $form->label( 'values', 'Values' ); ?>
+                <?php print $form->textarea( 'values', $editOption->getValuesAsList() ); ?>
+              </div>
+              <div class="form-group">
+                <?php print $form->label( 'default', 'Default' ); ?>
+                <?php print $form->text( 'default', $editOption->getValueDefault() ); ?>
+              </div>
           </div>
 
-          <div class="form-group">
-            <?php print $form->label( 'values', 'Values' ); ?>
-            <?php print $form->textarea( 'values', $editOption->getValuesAsList() ); ?>
+          <div class="ccm-dashboard-form-actions-wrapper">
+            <div class="ccm-dashboard-form-actions">
+              <?php print $form->submit('save_settings', 'Save', array('class' => 'btn btn-primary pull-right') ); ?>
+            </div>
           </div>
 
-          <div class="form-group">
-            <?php print $form->label( 'default', 'Default' ); ?>
-            <?php print $form->text( 'default', $editOption->getValueDefault() ); ?>
-          </div>
+      </form>
 
-      </div>
+    <?php endif; ?>
 
-      <div class="ccm-dashboard-form-actions-wrapper">
-        <div class="ccm-dashboard-form-actions">
-          <?php print $form->submit('save_settings', 'Save', array('class' => 'btn btn-primary pull-right') ); ?>
-        </div>
-      </div>
+  </div>
 
-    </div>
-  </form>
 
-<?php endif; ?>
+</div>

@@ -26,6 +26,15 @@ class Value extends Object {
     return $value;
   }
 
+  public function getByKey( $key ) {
+    $db = Database::get();
+    $data = $db->GetRow('select * from RazorProductOptionValues where poID = ? and povKey = ?',
+    array( $this->poID, $key ));
+    $value = new Value();
+    $value->setPropertiesFromArray( $data );
+    return $value;
+  }
+
   public function getValue() {
     return $this->povValue;
   }
@@ -36,6 +45,12 @@ class Value extends Object {
       $th = \Core::make('helper/text');
       $key = $th->handle( $value );
     }
+
+    $existing = $this->getByKey( $key );
+    if( $existing ) {
+      return false;
+    }
+
     $db->query("insert into RazorProductOptionValues (poID, povKey, povValue, povIsDefault) values (?, ?, ?, ?)",
       array( $this->poID, $key, $value, $isDefault )
     );
