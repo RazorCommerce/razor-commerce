@@ -86,9 +86,20 @@ class Option extends DashboardPageController {
       if( $mode == 'add' ) {
         $product = Product::getByID(1);
         $productProductOption = $product->option()->add( $productOption );
+
       } else {
+
+        // need way to edit the options, like addOrEdit()
         $product = Product::getByID(1);
         $productProductOption = $product->option()->get( $productOption );
+
+
+        $values = $data['values'];
+        $values = str_replace(' ', '', $values);
+        $values = explode( ',', $values );
+        foreach( $values as $value ) {
+          $productOption->value()->add( $value );
+        }
 
       }
 

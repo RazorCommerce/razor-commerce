@@ -23,6 +23,7 @@ $form = Core::make('helper/form');
             <td>
               <?php if( $option->assigned ) { ?>
                 <a href="<?php print $this->url('dashboard/razor/product/option/edit/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Edit</a>
+                <a href="<?php print $this->url('dashboard/razor/product/option/remove/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Remove</a>
               <?php } else { ?>
                 <a href="<?php print $this->url('dashboard/razor/product/option/add/') . '/1/' . $option->getProductOptionID(); ?>" class="btn btn-default">Add</a>
               <?php } ?>
